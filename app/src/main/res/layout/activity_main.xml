@@ -1,22 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="end"
+    android:nestedScrollingEnabled="true"
     tools:context=".MainActivity">
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/taskRv"
+    <FrameLayout
+        android:id="@+id/fl_rv1_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintBottom_toTopOf="@id/fl_rv2_main"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taskRv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fadeScrollbars="false"
+            android:overScrollMode="always"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            android:scrollIndicators="left"
+            android:scrollbarSize="20dp"
+            android:scrollbarStyle="outsideInset"
+            android:scrollbars="vertical"
+            android:verticalScrollbarPosition="right"
+            android:visibility="visible"
+            tools:listitem="@layout/recyclerview_item" />
+
+        <TextView
+            android:id="@+id/tv_empty_list_1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="No items!"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="@id/taskRv"
+            app:layout_constraintBottom_toBottomOf="@id/taskRv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_pricetag_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp"
+        android:layout_marginHorizontal="20dp"
+        android:gravity="left"
+        android:background="@drawable/shape"
+        android:backgroundTint="#E8E3E3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/fl_rv2_main"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total:"
+            android:layout_marginHorizontal="5dp"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$"
+            android:textStyle="bold"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tv_total_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="00.00"
+            android:textStyle="bold"
+            android:layout_marginEnd="5dp"
+            android:textSize="18sp"/>
+
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_rv2_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="0.4"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:background="@drawable/shape"
+        android:elevation="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/recyclerview_item"
-        />
+        app:layout_constraintTop_toBottomOf="@id/fl_rv1_main">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/taskRv2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp"
+            tools:listitem="@layout/recyclerview_item" />
+
+        <TextView
+            android:id="@+id/tv_empty_list_2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Drag and Drop"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:visibility="gone"/>
+
+
+    </FrameLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
